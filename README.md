@@ -16,3 +16,6 @@ Then after knowing the solution I will still type it up, mostly on memory and wh
 ## GOAL
 Solve medium problems in 20-30 minutes consistently.
 
+## What to do after, or as another fun thing to do?
+Do the 150 leetcode questions of number 1 of the '## which problems?'
+
