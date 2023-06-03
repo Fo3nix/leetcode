@@ -3,7 +3,7 @@ In this repository I am adding all of my solutions to leetcode problems.
 
 ## Which problems?
 1. https://www.youtube.com/watch?v=xF554Tlzo-c This youtuber talks about a list of 150 leetcode problems you need to be ready for a job interview. --> https://leetcode.com/problem-list/top-interview-questions/
-2. Neetcode on youtube has made a roadmap for leetcode: neetcode.io. He has made a lot of video solutions too. Maybe this is a better one to follow.
+2. Neetcode on youtube has made a roadmap for leetcode: [neetcode.io](url). He has made a lot of video solutions too. Maybe this is a better one to follow.
 
 ## What will be in this repository?
 I will make the solutions of the questions in the neetcode roadmap. 
