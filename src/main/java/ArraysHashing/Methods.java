@@ -1,8 +1,6 @@
 package ArraysHashing;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class Methods {
     // CONTAINS DUPLICATE
@@ -47,6 +45,29 @@ public class Methods {
 
         return new int[0];
     }
+
+    // GROUP ANAGRAMS
+    // https://leetcode.com/problems/group-anagrams/submissions/964364331/
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, ArrayList<String>> map = new HashMap<>();
+
+        for(int i = 0; i<strs.length; i++){
+            char[] chs = strs[i].toCharArray();
+            Arrays.sort(chs);
+            String key = new String(chs);
+
+            if(map.containsKey(key)){
+                map.get(key).add(strs[i]);
+            }
+            else{
+                map.put(key, new ArrayList<String>(List.of(strs[i])));
+            }
+        }
+
+        return new ArrayList<>(map.values());
+    }
+
+
 
 
 }
