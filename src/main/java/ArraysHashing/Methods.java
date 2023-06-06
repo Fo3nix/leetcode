@@ -68,6 +68,59 @@ public class Methods {
     }
 
 
+    // top k frequent elements
+    // https://leetcode.com/problems/top-k-frequent-elements/submissions/965225863/
+    public int[] topKFrequent(int[] nums, int k) {
+
+        // mapping number to amount of times it is in the array
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            map.merge(num, 1, Integer::sum);
+        }
+
+        ArrayList<Integer>[] buckets = new ArrayList[nums.length+1];
+
+        for(int key : map.keySet()){
+            int mapVal = map.get(key);
+            if(buckets[mapVal]==null) buckets[mapVal] = new ArrayList<>();
+            buckets[mapVal].add(key);
+        }
+
+        int[] res = new int[k];
+        int index = 0;
+        for(int i = buckets.length-1; i>0; i--){
+            if(buckets[i]!=null) {
+                for(int num : buckets[i]){
+                    res[index++] = num;
+                }
+            }
+            if(index==k) break;
+        }
+
+        return res;
+    }
+
+    // PRODUCT OF ARRAY EXCEPT SELF
+    // https://leetcode.com/problems/product-of-array-except-self/submissions/965284973/
+    public int[] productExceptSelf(int[] nums) {
+
+        int[] res = nums.clone();
+        for(int i = 1; i<nums.length; i++){
+            res[i]=res[i]*res[i-1];
+        }
+
+        int val = 1;
+        for(int i = nums.length-1; i>0; i--){
+            res[i] = res[i-1]*val;
+            val = val*nums[i];
+        }
+        res[0]=val;
+
+        return res;
+
+    }
+
 
 
 }
