@@ -122,5 +122,59 @@ public class Methods {
     }
 
 
+    //  VALID SUDOKU
+    // https://leetcode.com/problems/valid-sudoku/submissions/966581515/
+    public boolean isValidSudoku(char[][] board) {
+        int[] row = new int[9];
+        int[] columns = new int[81];
+        int[] boxes = new int[81];
+
+        int num = 0;
+
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<9; j++){
+                num = board[i][j];
+                if(num == 46) continue;
+                num -= 49;
+
+                if(row[num]==1 || columns[(j*9)+num]==1 || boxes[(i/3)*27+(j/3)*9+num]==1) return false;
+
+                row[num]=1;
+                columns[(j*9)+num]=1;
+                boxes[(i/3)*27+(j/3)*9+num]=1;
+            }
+
+            for(int j = 0; j<9; j++){
+                row[j]=0;
+            }
+        }
+        return true;
+    }
+
+    // longest consecutive sequence
+    // https://leetcode.com/problems/longest-consecutive-sequence/submissions/966736350/
+    public int longestConsecutive(int[] nums) {
+        if(nums.length==0) return 0;
+        Set<Integer> set = new HashSet<>();
+        for(int n : nums){set.add(n);}
+
+        int count = 1;
+        int max = 1;
+
+        for(int n : set){
+            if(!set.contains(n-1)){
+                int num = n+1;
+                while(set.contains(num++)){
+                    count++;
+                }
+            }
+            max = Math.max(count,max);
+            count=1;
+        }
+
+        return max;
+    }
+
+
 
 }
