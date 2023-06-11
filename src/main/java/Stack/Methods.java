@@ -1,8 +1,6 @@
 package Stack;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Stack;
+import java.util.*;
 
 public class Methods {
     // VALID PARENTHESES
@@ -85,6 +83,54 @@ public class Methods {
             default: return Integer.parseInt(st);
         }
     }
+
+    // generateParenthesis
+    // https://leetcode.com/problems/generate-parentheses/submissions/968863362/
+
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+
+        generateParenthesis(n, 0, 0, res, new char[n*2], 0);
+
+        return res;
+    }
+
+    public void generateParenthesis(int total, int opened, int closed, List<String> res, char[] chars, int index){
+        if(index==total*2){
+            res.add(new String(chars));
+            return;
+        }
+        if(opened<total) {chars[index]='('; generateParenthesis(total, opened+1, closed, res, chars, index+1);}
+        if(closed<opened) {chars[index++]=')';generateParenthesis(total, opened, closed+1, res, chars, index);}
+    }
+
+
+    // Daily Temperatures
+    // https://leetcode.com/problems/daily-temperatures/submissions/968894053/
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n = temperatures.length;
+        int[] res = new int[n];
+
+        int max = temperatures[n-1];
+        int curr = 0;
+        int days = 1;
+        for(int i = n - 1; i >=0; i--){
+            curr = temperatures[i];
+            if(curr >= max){
+                max = curr;
+                continue;
+            }
+            days = 1;
+            while(temperatures[i + days] <= curr){
+                days += res[i + days];
+            }
+            res[i] = days;
+        }
+        return res;
+    }
+
+
+
 
 
 }
