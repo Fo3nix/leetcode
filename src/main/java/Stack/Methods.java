@@ -130,7 +130,33 @@ public class Methods {
     }
 
 
+    // carFleet
+    // https://leetcode.com/problems/car-fleet/submissions/969738095/
+    public int carFleet(int target, int[] position, int[] speed) {//tc = O(nlogn) sc = O(n)
+        if (position.length == 1) return 1;
 
+        // Put into hashmap
+        Map<Integer, Integer> posSpeed = new HashMap<>();
+        for(int i = 0; i<position.length; i++){
+            posSpeed.put(position[i], speed[i]);
+        }
+
+        // Sort the position array
+        Arrays.sort(position);
+
+        float previousTime = 0;
+        int res = 0;
+
+        for (int i = position.length-1; i >=0 ; i--) {
+            float currentTime = (target-position[i])/(float)posSpeed.get(position[i]);
+
+            if (currentTime > previousTime) {
+                previousTime = currentTime;
+                res++;
+            }
+        }
+        return res;
+    }
 
 
 }
