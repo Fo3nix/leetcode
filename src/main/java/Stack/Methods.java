@@ -158,5 +158,32 @@ public class Methods {
         return res;
     }
 
+    // largestRectangleArea
+    // https://leetcode.com/problems/largest-rectangle-in-histogram/submissions/970167887/
+    public int largestRectangleArea(int[] heights) {
+
+        int len = heights.length;
+        int maxArea = 0;
+
+        int[] stack = new int[len + 1]; // Stack to store indices
+        int top = -1; // Index of the top element in the stack
+
+        for (int i = 0; i <= len; i++) {
+            int currentHeight = (i == len) ? 0 : heights[i];
+
+            while (top >= 0 && currentHeight < heights[stack[top]]) {
+                int height = heights[stack[top]];
+                top--;
+                int width = (top < 0) ? i : i - stack[top] - 1;
+                maxArea = Math.max(maxArea, height * width);
+            }
+
+            top++;
+            stack[top] = i;
+        }
+
+        return maxArea;
+    }
+
 
 }
